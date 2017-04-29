@@ -40,6 +40,7 @@ def about():
 @cross_origin()
 def api():
     """Render the website's about page."""
+    error = False
     clinics = []
     date = None
     payload = request.get_json(silent=True)
@@ -48,10 +49,13 @@ def api():
     if hasattr(payload, 'clinics'):
         payload = payload['clinics']
 
-    current_rate, daily_rates = get_prediction()
+    try:
+        current_rate, daily_rates = get_prediction(date, clinics)
+    except Exception as exception:
+        error = exception
 
     messages = ['Hello, front end!']
-    message = {'error': False,
+    message = {'error': error,
                'messages': messages,
                'current_rate': current_rate,
                'daily_rates': daily_rates,
