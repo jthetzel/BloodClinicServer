@@ -50,7 +50,7 @@ def api():
         payload = payload['clinics']
 
     try:
-        current_rate, daily_rates = get_prediction(date, clinics)
+        current_rate, daily_rates = get_prediction()
     except Exception as exception:
         error = exception
 
