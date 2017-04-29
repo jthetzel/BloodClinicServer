@@ -7,8 +7,16 @@ This file creates your application.
 """
 
 import os
+from os.path import join
 import json
-from flask import Flask, render_template, request, redirect, url_for
+from flask import (
+  Flask,
+  render_template,
+  request,
+  redirect,
+  url_for,
+  send_from_directory
+  )
 from flask_cors import CORS, cross_origin
 from prediction import get_prediction
 
@@ -24,10 +32,42 @@ app.config['SECRET_KEY'] = os.environ.get(
 # Routing for your application.
 ###
 
+@app.route('/js/<path:path>')
+def send_static_js(path):
+    """
+    Serve static js files
+    """
+    return send_from_directory(join(app._static_folder, 'js'), path)
+
+
+@app.route('/imgs/<path:path>')
+def send_static_imgs(path):
+    """
+    Serve static imgs files
+    """
+    return send_from_directory(join(app._static_folder, 'imgs'), path)
+
+
+@app.route('/css/<path:path>')
+def send_static_css(path):
+    """
+    Serve static imgs files
+    """
+    return send_from_directory(join(app._static_folder, 'css'), path)
+
+
+@app.route('/panel/<path:path>')
+def send_static_panel(path):
+    """
+    Serve static imgs files
+    """
+    return send_from_directory(join(app._static_folder, 'panel'), path)
+
+
 @app.route('/')
 def home():
     """Render website's home page."""
-    return render_template('home.html')
+    return render_template('index.html')
 
 
 @app.route('/about/')
