@@ -7,6 +7,7 @@ This file creates your application.
 """
 
 import os
+import json
 from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.cors import CORS, cross_origin
 
@@ -31,6 +32,14 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html')
+
+
+@app.route('/api/')
+def api():
+    """Render the website's about page."""
+    messages = ['Hello, front end!']
+    message = {'error': False, 'messages': messages}
+    return json.dumps(message)
 
 
 ###
