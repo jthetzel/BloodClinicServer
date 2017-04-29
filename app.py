@@ -9,9 +9,12 @@ This file creates your application.
 import os
 import json
 from flask import Flask, render_template, request, redirect, url_for
+from flask.ext.cors import CORS, cross_origin
 
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
 
@@ -32,6 +35,7 @@ def about():
 
 
 @app.route('/api', methods=['GET', 'POST'])
+@cross_origin()
 def api():
     """Render the website's about page."""
     payload = request.get_json(silent=True)
