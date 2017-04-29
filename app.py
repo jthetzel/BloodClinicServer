@@ -34,8 +34,9 @@ def about():
 @app.route('/api/', methods=['GET', 'POST'])
 def api():
     """Render the website's about page."""
+    payload = request.get_json(silent=True)
     messages = ['Hello, front end!']
-    message = {'error': False, 'messages': messages}
+    message = {'error': False, 'messages': messages, 'payload': payload}
     return json.dumps(message)
 
 
