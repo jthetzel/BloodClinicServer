@@ -48,12 +48,13 @@ def api():
     if hasattr(payload, 'clinics'):
         payload = payload['clinics']
 
-    prediction = get_prediction()
+    current_rate, daily_rates = get_prediction()
 
     messages = ['Hello, front end!']
     message = {'error': False,
                'messages': messages,
-               'prediction': prediction,
+               'current_rate': current_rate,
+               'daily_rates': daily_rates,
                'payload': payload}
     return json.dumps(message)
 
