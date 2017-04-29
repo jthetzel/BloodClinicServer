@@ -9,7 +9,7 @@ This file creates your application.
 import os
 import json
 from flask import Flask, render_template, request, redirect, url_for
-from flask.ext.cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
