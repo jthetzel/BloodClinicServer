@@ -9,6 +9,10 @@ This file creates your application.
 import os
 import json
 from flask import Flask, render_template, request, redirect, url_for
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 app = Flask(__name__)
@@ -31,9 +35,10 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/api/', methods=['GET', 'POST'])
+@app.route('/api', methods=['GET', 'POST'])
 def api():
     """Render the website's about page."""
+    logger.info(request)
     payload = request.get_json(silent=True)
     messages = ['Hello, front end!']
     message = {'error': False, 'messages': messages, 'payload': payload}
