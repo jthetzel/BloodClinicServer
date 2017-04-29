@@ -10,6 +10,7 @@ import os
 import json
 from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS, cross_origin
+from prediction import get_prediction
 
 
 app = Flask(__name__)
@@ -39,9 +40,21 @@ def about():
 @cross_origin()
 def api():
     """Render the website's about page."""
+    clinics = []
+    date = None
     payload = request.get_json(silent=True)
+    if hasattr(payload, 'date'):
+        date = payload['date']
+    if hasattr(payload, 'clinics'):
+        payload = payload['clinics']
+
+    prediction = get_prediction()
+
     messages = ['Hello, front end!']
-    message = {'error': False, 'messages': messages, 'payload': payload}
+    message = {'error': False,
+               'messages': messages,
+               'prediction': prediction,
+               'payload': payload}
     return json.dumps(message)
 
 
