@@ -13,7 +13,7 @@ OPEN = 7
 CLOSE = 15
 
 
-def get_prediction(date=None, clinics=['one', 'two', 'three', 'four']):
+def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
     if not date:
         now = datetime.now()
     current_rate = {}
