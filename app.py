@@ -31,7 +31,7 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/api/')
+@app.route('/api/', methods=['GET', 'POST'])
 def api():
     """Render the website's about page."""
     messages = ['Hello, front end!']
