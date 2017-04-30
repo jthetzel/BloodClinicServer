@@ -64,7 +64,6 @@ def send_static_panel(path):
     return send_from_directory(join(app._static_folder, 'panel'), path)
 
 
-@app.errorhandler(404)
 @app.route('/')
 def home():
     """Render website's home page."""
@@ -112,6 +111,12 @@ def add_header(response):
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=600'
     return response
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    """Custom 404 page."""
+    return render_template('404.html'), 404
 
 
 if __name__ == '__main__':
