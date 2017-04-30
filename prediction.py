@@ -36,6 +36,7 @@ def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
         daily_rates = {}
         for clinic in clinics:
             rates = pull_day(clinic.upper(), now)
+            rates = [rate if rate else 0 for rate in rates]
             daily_rates[clinic] = rates
             current_rate = rates[now.hour]
 
