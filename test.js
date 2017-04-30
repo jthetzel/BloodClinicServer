@@ -1,5 +1,6 @@
 
-uri = 'http://bloodclinicserver.herokuapp.com/api'
+/* uri = 'http://bloodclinicserver.herokuapp.com/api' */
+uri = 'http://localhost:5000/api'
 date = new Date()
 payload = {'date': date}
 headers = new Headers({'Content-Type': 'application/json'})
