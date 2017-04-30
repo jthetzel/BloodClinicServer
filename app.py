@@ -9,7 +9,6 @@ This file creates your application.
 import os
 from os.path import join
 import json
-from datetime import datetime
 from flask import (
   Flask,
   render_template,
@@ -94,8 +93,7 @@ def api():
                'messages': messages,
                'current_rate': current_rate,
                'daily_rates': daily_rates,
-               'payload': payload,
-               'now': datetime.now()}
+               'payload': payload}
     return json.dumps(message)
 
 
