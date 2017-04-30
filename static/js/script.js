@@ -143,10 +143,8 @@ function initMap() {
     marker.addListener('click', function() {
       console.log(marker.label);
       fetchBloodClinicServer();
-      const currentWaitTime = store[]
       plotChart(store['daily_rates'][marker.label]);
       $('#clinicLabel').text(marker.name);
-      $('#currentWaitTime').text();
       $("#infoModal").modal("show");
     });
     return marker;
