@@ -5,6 +5,7 @@ Prediction functions
 
 from random import uniform
 from datetime import datetime
+from bin_loader import pull_day
 
 
 MAX = 100
@@ -13,7 +14,7 @@ OPEN = 7
 CLOSE = 15
 
 
-def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
+def get_mock_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
     if not date:
         now = datetime.now()
     current_rate = {}
@@ -26,3 +27,21 @@ def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
         current_rate[clinic] = rates[now.hour]
 
     return current_rate, daily_rates
+
+
+def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
+    if not date:
+        now = datetime.now()
+        current_rate = {}
+        daily_rates = {}
+        for clinic in clinics:
+            rates = pull_day(clinic.upper(), now)
+            daily_rates[clinic] = rates
+            current_rate = rates[now.hour]
+
+    return current_rate, daily_rates
+
+
+if __name__ == '__main__':
+    print(get_prediction()[0])
+    print(get_prediction()[1])
