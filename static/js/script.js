@@ -37,7 +37,7 @@ function initMap() {
       };
 
       console.log(currentLocation.lat + "\t" + currentLocation.lng);
-            
+
       var userMarker = new google.maps.Marker({
         position: currentLocation,
         map: map,
@@ -216,9 +216,7 @@ const fetchBloodClinicServer = () => {
     })
 }
 
-<<<<<<< Updated upstream
 fetchBloodClinicServer()
-=======
 // function launchModal() {
 
 // }
@@ -244,4 +242,3 @@ setModalTitle();
   // {47.6102897, -52.7249336},  // majorsPath
   // {47.5574587, -52.7215271},  // stClaresMercy
   // {47.5287682, -52.7496391}   // waterford
->>>>>>> Stashed changes
