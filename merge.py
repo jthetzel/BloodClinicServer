@@ -5,8 +5,9 @@ Merge BlooddClinicApp to BloodClinicServer
 
 
 from os import pardir
-from os.apth import join, dirname
-from distutils.dir_util import copy_tree, copy_file
+from os.path import join, dirname
+from distutils.dir_util import copy_tree
+from distutils.file_util import copy_file
 import logging
 
 
@@ -25,13 +26,13 @@ def merge():
     for file in APP_TEMPLATE_FILES:
         src = join(APP_PATH, file)
         dest = join(TEMPLATE_PATH, file)
-        logger.info('Copying {0} to {1}'.join(src, dest))
+        logger.info('Copying {0} to {1}'.format(src, dest))
         copy_file(src, dest)
 
     for directory in APP_STATIC_DIRECTORIES:
         src = join(APP_PATH, directory)
         dest = join(STATIC_PATH, directory)
-        logger.info('Copying {0} to {1}'.join(src, dest))
+        logger.info('Copying {0} to {1}'.format(src, dest))
         copy_tree(src, dest)
 
 

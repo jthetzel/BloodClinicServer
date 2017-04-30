@@ -37,7 +37,7 @@ function initMap() {
       };
 
       console.log(currentLocation.lat + "\t" + currentLocation.lng);
-
+            
       var userMarker = new google.maps.Marker({
         position: currentLocation,
         map: map,
@@ -198,7 +198,7 @@ const initialState = {
 var store = initialState
 
 const fetchBloodClinicServer = () => {
-  const uri = '//bloodclinicserver.herokuapp.com/api'
+  const uri = 'https://bloodclinicserver.herokuapp.com/api'
   const date = new Date()
   const payload = {'date': date}
   const headers = new Headers({'Content-Type': 'application/json'})
@@ -217,11 +217,12 @@ const fetchBloodClinicServer = () => {
 }
 
 fetchBloodClinicServer()
-// function launchModal() {
 
-// }
+function launchModal() {
 
-function setModalTitle(currentLocation)
+}
+
+function setModalTitle()
 {
   if(currentLocation.lat == 47.5719363 && currentLocation.lng == -52.7419408) {
     currentClinic = "HS";
