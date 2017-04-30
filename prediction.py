@@ -4,7 +4,7 @@ Prediction functions
 
 
 from random import uniform
-from datetime import datetime
+from datetime import datetime, timedelta
 from bin_loader import pull_day
 
 
@@ -32,13 +32,17 @@ def get_mock_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
 def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
     if not date:
         now = datetime.now()
+
+        # for demo, because demo is on a Sunday
+        now = now + timedelta(days=1)
+
         current_rate = {}
         daily_rates = {}
         for clinic in clinics:
             rates = pull_day(clinic.upper(), now)
             rates = [rate if rate else 0 for rate in rates]
             daily_rates[clinic] = rates
-            current_rate = rates[now.hour]
+            current_rate[clinic] = rates[now.hour]
 
     return current_rate, daily_rates
 
