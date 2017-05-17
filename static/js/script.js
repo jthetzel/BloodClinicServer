@@ -242,11 +242,12 @@ const fetchBloodClinicServer = () => {
       console.log(store)
       store = json
       console.log(store)
+      updateTimes(store)
     })
 }
 
 fetchBloodClinicServer()
-updateTimes(store)
+
 
 function updateImage(clinic)
 {
