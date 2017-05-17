@@ -218,10 +218,10 @@ function updateTimes(store) {
   const mp = store.current_rate['mp'] || null
   const wf = store.current_rate['wf'] || null
 
-  $('#hs').text(hs)
-  $('#sc').text(sc)
-  $('#mp').text(mp)
-  $('#wf').text(wf)
+  $('#hs').text(hs + ' minutes')
+  $('#sc').text(sc + ' minutes')
+  $('#mp').text(mp + ' minutes')
+  $('#wf').text(wf + ' minutes')
   console.log(hs)
 }
 
