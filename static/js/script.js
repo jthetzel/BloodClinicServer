@@ -222,6 +222,7 @@ function updateTimes(store) {
   $('#sc').text(sc)
   $('#mp').text(mp)
   $('#wf').text(wf)
+  console.log(hs)
 }
 
 // Update data from backend
