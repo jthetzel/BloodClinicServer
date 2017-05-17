@@ -19,6 +19,7 @@ from flask import (
   )
 from flask_cors import CORS, cross_origin
 from prediction import get_prediction
+from clinics import clinic_locations
 
 
 app = Flask(__name__)
@@ -81,7 +82,7 @@ def api():
     if hasattr(payload, 'date'):
         date = payload['date']
     if hasattr(payload, 'clinics'):
-        payload = payload['clinics']
+        clinics = payload['clinics']
 
     try:
         current_rate, daily_rates = get_prediction()
@@ -93,6 +94,7 @@ def api():
                'messages': messages,
                'current_rate': current_rate,
                'daily_rates': daily_rates,
+               'clinic_locations': clinic_locations,
                'payload': payload}
     return json.dumps(message)
 
