@@ -18,7 +18,7 @@ from flask import (
   send_from_directory
   )
 from flask_cors import CORS, cross_origin
-from dateutil.parser import parse
+# from dateutil.parser import parse
 from prediction import get_prediction
 from clinics import clinics_info
 
