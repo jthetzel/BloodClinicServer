@@ -16,3 +16,8 @@ mock
 # ----------------------
 gevent
 gunicorn
+
+# ----------------------
+# Utilities
+# ----------------------
+python-dateutil
