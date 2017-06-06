@@ -101,22 +101,24 @@ def api():
 @cross_origin()
 def apiv2():
     error = []
+    messages = ['Hello, front end!']
     date = None
     payload = request.get_json(silent=True)
     if hasattr(payload, 'date'):
+        messages.append('Has date')
         try:
             date = parse_date(payload['date'])
+            messages.append('Date is {0}'.format(date))
         except Exception as exception:
             error.append(exception)
     if hasattr(payload, 'clinics'):
         payload = payload['clinics']
-
     try:
+        messages.append('Getting predictions with date {0}'.format(date))
         current_rate, daily_rates = get_prediction(date)
     except Exception as exception:
         error.append(exception)
 
-    messages = ['Hello, front end!']
     message = {'error': error,
                'messages': messages,
                'current_rate': current_rate,
