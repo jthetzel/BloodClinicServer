@@ -18,7 +18,9 @@ from flask import (
   send_from_directory
   )
 from flask_cors import CORS, cross_origin
+from dateutils.parser import parse
 from prediction import get_prediction
+from clinics import clinics_info
 
 
 app = Flask(__name__)
@@ -75,7 +77,6 @@ def home():
 def api():
     """Render the website's about page."""
     error = False
-    clinics = []
     date = None
     payload = request.get_json(silent=True)
     if hasattr(payload, 'date'):
@@ -85,6 +86,28 @@ def api():
 
     try:
         current_rate, daily_rates = get_prediction()
+    except Exception as exception:
+        error = exception
+
+    message = {'error': error,
+               'current_rate': current_rate,
+               'daily_rates': daily_rates,
+               'payload': payload}
+    return json.dumps(message)
+
+
+@app.route('/apiv2', methods=['GET', 'POST'])
+@cross_origin()
+def apiv2():
+    date = None
+    payload = request.get_json(silent=True)
+    if hasattr(payload, 'date'):
+        date = parse(payload['date'])
+    if hasattr(payload, 'clinics'):
+        payload = payload['clinics']
+
+    try:
+        current_rate, daily_rates = get_prediction(date)
     except Exception as exception:
         error = exception
 
