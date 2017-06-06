@@ -107,14 +107,12 @@ def apiv2():
     try:
         messages.append('Date in payload is {0}'.format(payload['date']))
         date = parse_date(payload['date'])
-        messages.append('Date is {0}'.format(date))
     except:
         messages.append('Could not find date in payload')
 
     if hasattr(payload, 'clinics'):
         payload = payload['clinics']
     try:
-        messages.append('Getting predictions with date {0}'.format(date))
         current_rate, daily_rates = get_prediction(date)
     except Exception as exception:
         error.append(exception)
