@@ -104,6 +104,10 @@ def apiv2():
     messages = ['Hello, front end!']
     date = None
     payload = request.get_json(silent=True)
+    try:
+        messages.append('Date in payload is {0}'.format(payload['date']))
+    except:
+        messages.append('Could not find date in payload')
     if hasattr(payload, 'date'):
         messages.append('Has date')
         try:
