@@ -34,7 +34,7 @@ def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
         now = datetime.now()
 
         # for demo, because demo is on a Sunday
-        now = now + timedelta(days=1)
+        # now = now + timedelta(days=1)
 
         current_rate = {}
         daily_rates = {}
