@@ -19,6 +19,7 @@ from flask import (
   )
 from flask_cors import CORS, cross_origin
 # from dateutil.parser import parse
+from iso8601 import parse_date
 from prediction import get_prediction
 from clinics import clinics_info
 

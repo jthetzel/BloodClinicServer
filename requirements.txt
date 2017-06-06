@@ -16,8 +16,4 @@ mock
 # ----------------------
 gevent
 gunicorn
-
-# ----------------------
-# Utilities
-# ----------------------
-python-dateutil
+iso8601
