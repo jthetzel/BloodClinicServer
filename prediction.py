@@ -33,17 +33,21 @@ def get_prediction(date=None, clinics=['mp', 'wf', 'hs', 'sc']):
     if not date:
         date = datetime.now()
 
-        current_rate = {}
-        daily_rates = {}
-        for clinic in clinics:
-            rates = pull_day(clinic.upper(), date)
-            rates = [rate if rate else 0 for rate in rates]
-            daily_rates[clinic] = rates
-            current_rate[clinic] = rates[date.hour]
+    current_rate = {}
+    daily_rates = {}
+    for clinic in clinics:
+        rates = pull_day(clinic.upper(), date)
+        rates = [rate if rate else 0 for rate in rates]
+        daily_rates[clinic] = rates
+        current_rate[clinic] = rates[date.hour]
 
     return current_rate, daily_rates
 
 
 if __name__ == '__main__':
+    now = datetime.now()
+    earlier = now.replace(hour=11)
     print(get_prediction()[0])
     print(get_prediction()[1])
+    print(get_prediction(date=earlier)[0])
+    print(get_prediction(date=earlier)[1])
