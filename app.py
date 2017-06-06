@@ -97,28 +97,32 @@ def api():
     return json.dumps(message)
 
 
-# @app.route('/apiv2', methods=['GET', 'POST'])
-# @cross_origin()
-# def apiv2():
-#     date = None
-#     payload = request.get_json(silent=True)
-#     if hasattr(payload, 'date'):
-#         date = parse(payload['date'])
-#     if hasattr(payload, 'clinics'):
-#         payload = payload['clinics']
+@app.route('/apiv2', methods=['GET', 'POST'])
+@cross_origin()
+def apiv2():
+    error = []
+    date = None
+    payload = request.get_json(silent=True)
+    if hasattr(payload, 'date'):
+        try:
+            date = parse_date(payload['date'])
+        except Exception as exception:
+            error.append(exception)
+    if hasattr(payload, 'clinics'):
+        payload = payload['clinics']
 
-#     try:
-#         current_rate, daily_rates = get_prediction(date)
-#     except Exception as exception:
-#         error = exception
+    try:
+        current_rate, daily_rates = get_prediction(date)
+    except Exception as exception:
+        error.append(exception)
 
-#     messages = ['Hello, front end!']
-#     message = {'error': error,
-#                'messages': messages,
-#                'current_rate': current_rate,
-#                'daily_rates': daily_rates,
-#                'payload': payload}
-#     return json.dumps(message)
+    messages = ['Hello, front end!']
+    message = {'error': error,
+               'messages': messages,
+               'current_rate': current_rate,
+               'daily_rates': daily_rates,
+               'payload': payload}
+    return json.dumps(message)
 
 
 ###
