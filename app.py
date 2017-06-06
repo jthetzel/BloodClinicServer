@@ -106,15 +106,11 @@ def apiv2():
     payload = request.get_json(silent=True)
     try:
         messages.append('Date in payload is {0}'.format(payload['date']))
+        date = parse_date(payload['date'])
+        messages.append('Date is {0}'.format(date))
     except:
         messages.append('Could not find date in payload')
-    if hasattr(payload, 'date'):
-        messages.append('Has date')
-        try:
-            date = parse_date(payload['date'])
-            messages.append('Date is {0}'.format(date))
-        except Exception as exception:
-            error.append(exception)
+
     if hasattr(payload, 'clinics'):
         payload = payload['clinics']
     try:
