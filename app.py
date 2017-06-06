@@ -121,8 +121,7 @@ def apiv2():
                'messages': messages,
                'current_rate': current_rate,
                'daily_rates': daily_rates,
-               'payload': payload,
-               'date': date}
+               'payload': payload}
     return json.dumps(message)
 
 
