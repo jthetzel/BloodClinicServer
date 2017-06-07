@@ -20,6 +20,7 @@ from flask import (
 from flask_cors import CORS, cross_origin
 # from dateutil.parser import parse
 from iso8601 import parse_date
+from datetime import timedelta
 from prediction import get_prediction
 from clinics import clinics_info
 
@@ -107,6 +108,8 @@ def apiv2():
     try:
         messages.append('Date in payload is {0}'.format(payload['date']))
         date = parse_date(payload['date'])
+        # Adjust for NDT
+        date = date - timedelta(minutes=150)
     except:
         messages.append('Could not find date in payload')
 
